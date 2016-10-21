@@ -19,3 +19,5 @@ function echorun() {
 function run() {
   echorun ssh root@$HOSTNAME $@
 }
+
+run opkg update
