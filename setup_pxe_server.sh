@@ -9,14 +9,14 @@ run opkg install tar
 
 run mkdir /mnt/extstorage/syslinux-download
 
-
-SYSLINUX_TGZ='/mnt/extstorage/syslinux-download/syslinux-6.02.tar.gz'
+SYSLINUX_VERSION='6.03'
+SYSLINUX_TGZ="/mnt/extstorage/syslinux-download/syslinux-$SYSLINUX_VERSION.tar.gz"
 run "test -f $SYSLINUX_TGZ"
 if [ $? -gt 0 ]; then
-  run wget https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.02.tar.gz -O $SYSLINUX_TGZ
+  run wget https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-$SYSLINUX_VERSION.tar.gz -O $SYSLINUX_TGZ
 fi
 
-SYSLINUX_PATH='/mnt/extstorage/syslinux-download/syslinux-6.02'
+SYSLINUX_PATH="/mnt/extstorage/syslinux-download/syslinux-$SYSLINUX_VERSION"
 run "test -d $SYSLINUX_PATH"
 if [ $? -gt 0 ]; then
   run tar -xf $SYSLINUX_TGZ -C /mnt/extstorage/syslinux-download
