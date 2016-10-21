@@ -1,26 +1,7 @@
 #!/bin/sh
 
-if [ -f .hostname ]; then
-  HOSTNAME=`cat .hostname`
-else
-  HOSTNAME=$1
-fi
-
-case $HOSTNAME in
-  "")
-    echo "You must give hostname as first param or setup .hostname file!!!"
-    return 8472
-    ;;
-esac
-
-function echorun() {
-  echo "$@"
-  $@ || return $?
-}
-
-function run() {
-  echorun ssh root@$HOSTNAME $@
-}
+D_R=`cd \`dirname $0\` ; pwd -P`
+source $D_R/.shared.sh
 
 run opkg install usbutils kmod-usb-storage block-mount
 run mkdir /mnt/extstorage
