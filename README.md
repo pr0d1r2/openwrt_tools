@@ -17,3 +17,11 @@ Run:
 ```
 sh setup_ssh_key.sh
 ```
+
+### Setup external USB storage
+
+Assuming you have single USB device connected and it is already formatted, run:
+
+```
+sh setup_external_storage.sh
+```
