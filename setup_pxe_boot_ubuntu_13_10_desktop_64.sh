@@ -3,13 +3,13 @@
 D_R=`cd \`dirname $0\` ; pwd -P`
 source $D_R/setup_pxe_server.sh
 
-run 'grep "^label Ubuntu Live 13.10 64-Bit$" /mnt/extstorage/tftp/pxelinux.cfg/default'
+run 'grep -q "^label Ubuntu Live 13.10 64-Bit$" /mnt/extstorage/tftp/pxelinux.cfg/default'
 if [ $? -gt 0 ]; then
   run 'echo "label Ubuntu Live 13.10 64-Bit" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   run 'echo "        MENU LABEL Ubuntu Live 13.10 64-Bit" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   run 'echo "        KERNEL disks/ubuntu1310-64/casper/vmlinuz.efi" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   # TODO: unify 192.168.1.1 address to config one
-  run 'echo "        APPEND boot=casper ide=nodma netboot=nfs nfsroot=192.168.1.1:/mnt/extstorage/tftp/disks/ubuntu1310-64/ initrd=disks/ubuntu/casper/initrd.lz" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
+  run 'echo "        APPEND boot=casper ide=nodma netboot=nfs nfsroot=192.168.1.1:/mnt/extstorage/tftp/disks/ubuntu1310-64/ initrd=disks/ubuntu1310-64/casper/initrd.lz" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   run 'echo "        TEXT HELP" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   run 'echo "                Starts the Ubuntu Live-CD - Version 13.10 64-Bit" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
   run 'echo "        ENDTEXT" >> /mnt/extstorage/tftp/pxelinux.cfg/default'
